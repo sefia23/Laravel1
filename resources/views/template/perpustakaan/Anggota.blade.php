@@ -17,7 +17,7 @@
                     <input type="text" class="form-control" name="nama_anggota" placeholder="Input Nama Anggota">
                         <label>Jenis Kelamin</label>
                         <select type="text" name="jk_anggota" class="form-control">
-                          <option></option>
+                        <option disabled selected>Pilih Jenis Kelamin</option>
                           <option value="L">Laki-Laki</option>
                           <option value="P">Perempuan</option>
                         </select>
@@ -29,8 +29,8 @@
                     <input type="text" class="form-control" name="alamat_anggota" placeholder="Input Alamat Anggota">
                   </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Reset</button>
                 </div>
               </form>
             </div>

@@ -24,12 +24,14 @@
                     <input type="number" class="form-control" name="tahun_penerbit" placeholder="Input Tahun Penerbitan">
                     <label for="exampleInputEmail1">Stok Buku</label>
                     <input type="number" class="form-control" name="stok" placeholder="Input Sisa Stock">
-                  </div>
+</div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" name="submit" value="Save" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Reset</button>
                 </div>
               </form>
             </div>
+</div>
 @endsection
