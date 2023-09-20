@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PetugasController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -12,6 +14,8 @@ class PetugasController extends Controller
     public function index()
     {
         //
+        $petugas = Db::table('petugass')->get();
+        return view('petugas.index', compact('petugas'));
     }
 
     /**
@@ -19,7 +23,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        return view('template.perpustakaan.Petugas');
+        return view('petugas.petugas');
     }
 
     /**
@@ -28,6 +32,21 @@ class PetugasController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'telp' => 'required|numeric|min:10',
+            'alamat' => 'required',
+        ]);
+    
+        $query = DB::table('petugass')->insert([
+            'nama_petugas' => $request['nama'],
+            'jabatan_petugas' => $request['jabatan'],
+            'no_telp_petugas' => $request['telp'],
+            'alamat_petugas' => $request['alamat'],
+        ]);
+        
+        return redirect()->route('petugas.index');
     }
 
     /**
@@ -36,6 +55,8 @@ class PetugasController extends Controller
     public function show(string $id)
     {
         //
+        $petugas = DB::table('petugass')->where('id', $id)->get();
+        return view('petugas.show', compact('petugas'));
     }
 
     /**
@@ -44,6 +65,8 @@ class PetugasController extends Controller
     public function edit(string $id)
     {
         //
+        $petugas = DB::table('petugass')->where('id', $id)->get();
+        return view('petugas.edit', compact('petugas'));
     }
 
     /**
@@ -52,6 +75,20 @@ class PetugasController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'telp' => 'required|numeric|min:10',
+            'alamat' => 'required',
+        ]);
+
+        $query = DB::table('petugass')->where('id', $id)->update([
+            'nama_petugas' => $request['nama'],
+            'jabatan_petugas' => $request['jabatan'],
+            'no_telp_petugas' => $request['telp'],
+            'alamat_petugas' => $request['alamat'],
+        ]);
+        return redirect()->route('petugas.index');
     }
 
     /**
@@ -60,5 +97,7 @@ class PetugasController extends Controller
     public function destroy(string $id)
     {
         //
+        $petugass = DB::table('petugass')->where('id', $id)->delete();
+        return redirect()->route('petugas.index');
     }
 }
